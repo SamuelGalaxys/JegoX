@@ -241,6 +241,14 @@
 
 
 
+        <button id="save">Save</button>
+
+        
+        <input type="file" id="file-input" style="display: none;">
+        <button id="load">Load</button>
+
+
+
       <tr>
         <th data-field="state" data-checkbox="true"></th>
         <th data-field="id" data-title="번호" data-editable="true">번호</th>
@@ -267,56 +275,137 @@
  
    
 <!-- Table Search JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+
 
 <script>
   var $table = $('#table');
   var $add = $('#add');
   var $remove = $('#remove');
+  var $load = $('#load');
+  var $fileInput = $('#file-input');
 
   $(function() {
-      
     $.fn.editable.defaults.emptytext = '[클릭하여 편집]';
-      
     $table.bootstrapTable('getData');
-      
 
     $add.click(function () {
-var currentId = $table.bootstrapTable('getData').length + 1;
-if (currentId <= 1000000) {
-$table.bootstrapTable('insertRow', {
-  index: 0,
-  row: {
-    id: currentId,
-    name: '',
-    inprice: '[입고 가격 입력]',
-    outprice: '[출고 가격 입력]',
-    guitar: '[클릭하여 메모]'
-  }
-});
-}
-});
-
-      
-    $table.on('check.bs.table uncheck.bs.table check-all.bs.table uncheck-all.bs.table', function () {
-      $remove.prop('disabled', !$table.bootstrapTable('getSelections').length)
+      var currentId = $table.bootstrapTable('getData').length + 1;
+      if (currentId <= 1000000) {
+        $table.bootstrapTable('insertRow', {
+          index: 0,
+          row: {
+            id: currentId,
+            name: '',
+            inprice: '[입고 가격 입력]',
+            outprice: '[출고 가격 입력]',
+            guitar: '[클릭하여 메모]'
+          }
+        });
+      }
     });
-      
 
-    //삭제 클릭시
+    $table.on('check.bs.table uncheck.bs.table check-all.bs.table uncheck-all.bs.table', function () {
+      $remove.prop('disabled', !$table.bootstrapTable('getSelections').length);
+    });
+
     $remove.click(function () {
       var ids = $.map($table.bootstrapTable('getSelections'), function (row) {
-        return row.id
-      })
+        return row.id;
+      });
       $table.bootstrapTable('remove', {
         field: 'id',
         values: ids
-      })
-      $remove.prop('disabled', true)
+      });
+      $remove.prop('disabled', true);
     });
-      
-      
-  })
+
+    $load.click(function () {
+      $fileInput.click();
+    });
+
+    $table.on('check.bs.table uncheck.bs.table check-all.bs.table uncheck-all.bs.table', function () {
+      $remove.prop('disabled', !$table.bootstrapTable('getSelections').length);
+    });
+
+    $remove.click(function () {
+      var ids = $.map($table.bootstrapTable('getSelections'), function (row) {
+        return row.id;
+      });
+      $table.bootstrapTable('remove', {
+        field: 'id',
+        values: ids
+      });
+      $remove.prop('disabled', true);
+    });
+
+ 
+
+    $fileInput.change(function (event) {
+      var file = event.target.files[0];
+      var reader = new FileReader();
+      reader.onload = function (event) {
+        var contents = event.target.result;
+        var parsedData = JSON.parse(contents);
+        $table.bootstrapTable('load', parsedData);
+      };
+      reader.readAsText(file);
+    });
+ 
+
+    $table.on('check.bs.table uncheck.bs.table check-all.bs.table uncheck-all.bs.table', function () {
+      $remove.prop('disabled', !$table.bootstrapTable('getSelections').length);
+    });
+
+    $remove.click(function () {
+      var ids = $.map($table.bootstrapTable('getSelections'), function (row) {
+        return row.id;
+      });
+      $table.bootstrapTable('remove', {
+        field: 'id',
+        values: ids
+      });
+      $remove.prop('disabled', true);
+    });
+ 
+
+
+  });
 </script>
+
+
+<script>
+  var $table = $('#table');
+  var $add = $('#add');
+  var $remove = $('#remove');
+  var $save = $('#save');
+  var $load = $('#load');
+  var $fileInput = $('#file-input');
+
+  $(function() {
+    $.fn.editable.defaults.emptytext = '[클릭하여 편집]';
+    $table.bootstrapTable('getData');
+
+     
+
+    $table.on('check.bs.table uncheck.bs.table check-all.bs.table uncheck-all.bs.table', function () {
+      $remove.prop('disabled', !$table.bootstrapTable('getSelections').length);
+    });
+ 
+    $save.click(function () {
+      var tableData = $table.bootstrapTable('getData');
+      var dataString = JSON.stringify(tableData, null, 2);
+      var blob = new Blob([dataString], { type: 'text/plain;charset=utf-8' });
+      saveAs(blob, 'JegoX.txt');
+    });
+
+    
+  });
+</script>
+
+
+
+
   <script  src="js/script.js"></script>
   
   </body>
