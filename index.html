@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>JavaScript Table Search Box Example</title>
+    
+
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/x-editable-bs4@1.5.4/dist/bootstrap4-editable/js/bootstrap-editable.min.js"></script>
+    
+    <script src="js/TableX.js"></script>
+    
+    <script src="https://unpkg.com/bootstrap-table@1.18.0/dist/extensions/editable/bootstrap-table-editable.min.js"></script>
+
+
+
+
+
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.18.0/dist/bootstrap-table.min.css">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/x-editable-bs4@1.5.4/dist/bootstrap4-editable/css/bootstrap-editable.min.css">
+    
+
+
+	<!-- Demo CSS -->
+	<link rel="stylesheet" href="css/demo.css">
+      
+
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&family=Orbit&display=swap" rel="stylesheet">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
+  <style>
+    /* Replace 'YourFontName' with the desired font family for the 'inprice' column */
+    #table .inprice{
+      font-family: 'Noto Sans KR', sans-serif;
+    }
+
+
+      /* Replace 'YourFontName' with the desired font family for elements with data-name="sibal" */
+
+      [data-name="name"] {
+    font-family: 'Noto Sans KR', sans-serif;
+  }
+
+
+  [data-name="inprice"] {
+    font-family: 'Noto Sans KR', sans-serif;
+  }
+
+  [data-name="outprice"] {
+    font-family: 'Noto Sans KR', sans-serif;
+  }
+  [data-name="guitar"] {
+    font-family: 'Noto Sans KR', sans-serif;
+  }
+
+
+  .cd-title{
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight : 900;
+  }
+
+
+  .cd-searchX{
+    font-family: 'Orbit', sans-serif;
+  }
+
+
+  .no-records-found{
+    font-family: 'Orbit', sans-serif;
+  }
+
+
+
+
+  </style>
+  
+  <script>
+    // Your existing JavaScript code here
+  </script>
+  
+  <!-- Your existing HTML code here -->
+  
+
+
+
+<style>
+
+ 
+
+
+.cd-table-container{
+  background: #fff;
+  box-shadow: 1px 2px 26px rgba(0, 0, 0, 0.2);
+  padding: 15px;
+  max-width: 720px;
+}
+/* Table Design */
+.cd-table{
+  width: 100%;
+  color: #666;
+  margin: 10px auto;
+  border-collapse: collapse;
+}
+
+.cd-table tr,
+.cd-table td{
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+.cd-table th{
+  background: #017721;
+  color: #fff;
+  padding: 10px;
+}
+
+/* Search Box */
+.cd-searchX{
+  padding: 10px;
+  border: 1px solid #ccc;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Search Title */
+.cd-title{
+  color: #666;
+  margin: 15px 0;
+}
+</style>
+  
+  </head>
+  <body>
+
+    <!----
+ <header class="intro">
+ <h1> JavaScript Table Search Box Example</h1>
+ <p> A Vanilla JavaScript search/filter box for table.</p>
+
+ <div class="action">
+ <a href="https://www.codehim.com/vanilla-javascript/javascript-search-box-for-table/" title="Back to download and tutorial page" class="btn back">Back to Tutorial</a>
+
+ </div>
+ 
+ </header>
+
+-->
+  
+ <main>
+<!-- partial:index.partial.html -->
+<section class="container cd-table-container">
+
+ 
+
+
+
+
+
+
+  <h2 class="cd-title">ZegoX : 재고관리</h2>
+  <input type="text" class="cd-searchX table-filter" data-table="order-table" placeholder="품명(번) 또는 가격,메모를 입력해주세요..." />
+</br></br>
+
+
+
+<!--테이블 구성-->
+<!--  data-search="true"   이거하면 검색창 자동으로 생김-->
+  <table class="cd-table order-table table" 
+  id="table"
+  data-toggle="table"
+  data-pagination="true"
+  data-url="owners.json">
+      <thead class="thead-re">
+        <button id="add" class="btn btn-success">추가</button>
+        <button id="remove" class="btn btn-danger" disabled>삭제</button>
+
+
+
+      <tr>
+        <th data-field="state" data-checkbox="true"></th>
+        <th data-field="id" data-title="번호" data-editable="true">번호</th>
+        <th data-field="name" data-title="품명" data-editable="true">품명</th>
+        <th data-field="inprice" data-title="입고단가" data-editable="true">입고단가</th>
+        <th data-field="outprice" data-title="출고단가" data-editable="true">출고단가</th>
+        <th data-field="guitar" data-title="기타" data-editable="true">기타</th>
+      </tr>
+
+     
+    </thead>
+ 
+  </table>
+
+
+
+
+
+
+
+</section>
+<!-- partial -->
+ </main>
+ 
+   
+<!-- Table Search JS -->
+
+<script>
+  var $table = $('#table');
+  var $add = $('#add');
+  var $remove = $('#remove');
+
+  $(function() {
+      
+    $.fn.editable.defaults.emptytext = '[클릭하여 편집]';
+      
+    $table.bootstrapTable('getData');
+      
+
+    $add.click(function () {
+var currentId = $table.bootstrapTable('getData').length + 1;
+if (currentId <= 1000000) {
+$table.bootstrapTable('insertRow', {
+  index: 0,
+  row: {
+    id: currentId,
+    name: '',
+    inprice: '[입고 가격 입력]',
+    outprice: '[출고 가격 입력]',
+    guitar: '[클릭하여 메모]'
+  }
+});
+}
+});
+
+      
+    $table.on('check.bs.table uncheck.bs.table check-all.bs.table uncheck-all.bs.table', function () {
+      $remove.prop('disabled', !$table.bootstrapTable('getSelections').length)
+    });
+      
+
+    //삭제 클릭시
+    $remove.click(function () {
+      var ids = $.map($table.bootstrapTable('getSelections'), function (row) {
+        return row.id
+      })
+      $table.bootstrapTable('remove', {
+        field: 'id',
+        values: ids
+      })
+      $remove.prop('disabled', true)
+    });
+      
+      
+  })
+</script>
+  <script  src="js/script.js"></script>
+  
+  </body>
+</html>
