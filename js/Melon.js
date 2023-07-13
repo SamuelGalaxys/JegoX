@@ -727,7 +727,7 @@ function(a) {
             this.$input.is(":visible") && (this.$input.focus(), this.$input.is("input,textarea") && !this.$input.is('[type="checkbox"],[type="range"]') && a.fn.editableutils.setCursorPosition(this.$input.get(0), this.$input.val().length), this.toggleClear && this.toggleClear())
         },
         renderClear: function() {
-            this.options.clear && (this.$clear = a('<span class="editable-clear-x"></span>'), this.$input.after(this.$clear).css("padding-right", 24).keyup(a.proxy(function(b) {
+            this.options.clear && (this.$clear = a('<span class="editable-clear-x"></span>'), this.$input.after(this.$clear).css("padding-right", 14).keyup(a.proxy(function(b) {
                 if (!~a.inArray(b.keyCode, [40, 38, 9, 13, 27])) {
                     clearTimeout(this.t);
                     var c = this;

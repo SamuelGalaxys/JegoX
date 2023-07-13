@@ -192,6 +192,9 @@
   color: #666;
   margin: 15px 0;
 }
+ 
+
+
 </style>
   
   </head>
@@ -287,6 +290,9 @@
 
   $(function() {
     $.fn.editable.defaults.emptytext = '[클릭하여 편집]';
+   
+
+
     $table.bootstrapTable('getData');
 
     $add.click(function () {
@@ -297,9 +303,9 @@
           row: {
             id: currentId,
             name: '',
-            inprice: '[입고 가격 입력]',
-            outprice: '[출고 가격 입력]',
-            guitar: '[클릭하여 메모]'
+            inprice: '가격',
+            outprice: '가격',
+            guitar: '기타메모'
           }
         });
       }
